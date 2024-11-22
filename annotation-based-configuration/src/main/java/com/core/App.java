@@ -3,6 +3,8 @@ package com.core;
 import com.core.autowire.Car;
 import com.core.autowire.Config;
 import com.core.autowire.Engine;
+import com.core.college.Student;
+import com.core.college.Teacher;
 import com.core.primary.NotificationService;
 import com.core.qualifier.Human;
 import org.springframework.context.ApplicationContext;
@@ -30,5 +32,11 @@ public class App
 
         NotificationService service=context.getBean("service",NotificationService.class);
         service.notification();
+
+        Student stu=context.getBean("student",Student.class);
+        stu.show();
+
+        Teacher teacher=context.getBean("teacher",Teacher.class);
+        System.out.println(teacher);
     }
 }
