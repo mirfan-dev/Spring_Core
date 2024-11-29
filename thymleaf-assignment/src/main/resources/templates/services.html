@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WhatsApp DP Style Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #007BFF; /* Optional: border for styling */
+        }
+
+
+
+        .card-title {
+            font-size: 1.5em;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .card-btn {
+            display: inline-block;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+             padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<div class="card">
+    <!-- Profile Image -->
+    <img src="https://cdn.pixabay.com/photo/2013/07/13/11/48/teacher-158711_640.png" alt="Profile Image" class="profile-img" >
+    <!-- Card Content -->
+    <h2 class="card-title">Corporate Training</h2>
+    <p class="card-text">
+        We are one of the top leading corporate training provider.
+        We provide training to employees of IT companies on different tools and technologies like C, java, C++, Python, Javascript, Spring Boot, Django, Machine learning etc..
+    </p>
+    <a href="#" class="card-btn">View Profile</a>
+</div>
+</body>
+
+</html>
