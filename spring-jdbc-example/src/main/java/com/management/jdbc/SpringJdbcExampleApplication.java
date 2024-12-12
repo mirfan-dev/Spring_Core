@@ -47,7 +47,7 @@ public class SpringJdbcExampleApplication implements CommandLineRunner {
 //		List<Category> categories=categoryDao.getAllCategory();
 //
 //		categories.forEach(category1 -> {
-//			System.out.println(category1.getDescription()+ "\t" +category1.getTitle());
+//			System.out.println(category1.getId()+" \t "+category1.getTitle()+ "\t" +category1.getDescription());
 //		});
 
 
@@ -64,7 +64,7 @@ public class SpringJdbcExampleApplication implements CommandLineRunner {
 		// 4. get by id
 
 //		Category category1=categoryDao.getById(101);
-//		System.out.println(category1.getTitle()+ "\t" +category1.getDescription());
+//		System.out.println(category1.getId()+" \t "+category1.getTitle()+ "\t" +category1.getDescription());
 
 		// delete category
 
@@ -74,13 +74,21 @@ public class SpringJdbcExampleApplication implements CommandLineRunner {
 
 //		List<Category> categories=categoryDao.search("Java");
 //		categories.forEach(category1 -> {
-//			System.out.println(category1.getTitle());
+//			System.out.println(category1.getId()+" \t "+category1.getTitle()+ "\t" +category1.getDescription());
 //		});
 
 		// count category
 
 //		int count=categoryDao.count();
 //		System.out.println("The total no. of rows are "+count);
+
+
+		// search category based on title and description
+
+//		List<Category> categories=categoryDao.searchByTitleAndDescription("lcwd");
+//		categories.forEach(category1 -> {
+//			System.out.println(category1.getId()+" \t "+category1.getTitle()+ "\t" +category1.getDescription());
+//		});
 
 
 
@@ -97,13 +105,13 @@ public class SpringJdbcExampleApplication implements CommandLineRunner {
 
 //		List<Course> courses=courseDao.getAllCourse();
 //		courses.forEach(course1 -> {
-//			System.out.println(course1.getName()+" \t "+course1.getDescription());
+//			System.out.println(course1.getId()+ "\t " +course1.getName()+ "\t "+course1.getDescription());
 //		});
 
 		// get by id
 
 //		Course course1=courseDao.getById(101);
-//		System.out.println(course1.getName()+" \t " +course1.getDescription());
+//		System.out.println(course1.getId()+ "\t " +course1.getName()+ "\t "+course1.getDescription());
 
 		// update course
 
@@ -121,14 +129,22 @@ public class SpringJdbcExampleApplication implements CommandLineRunner {
 
 //		List<Course> courses=courseDao.search("data");
 //		courses.forEach(course1 -> {
-//			System.out.println(course1.getName());
+//			System.out.println(course1.getId()+ "\t " +course1.getName()+ "\t "+course1.getDescription());
 //		});
 
 
 		// count course
 
-		int rowCount=courseDao.count();
-		System.out.println("The total no. of rows are: "+rowCount);
+//		int rowCount=courseDao.count();
+//		System.out.println("The total no. of rows are: "+rowCount);
+
+
+		// search based on name and description
+
+		List<Course> courses=courseDao.searchByNameAndDescription("programming");
+		courses.forEach(course1 -> {
+			System.out.println(course1.getId()+ "\t " +course1.getName()+ "\t "+course1.getDescription());
+		});
 
 
 	}

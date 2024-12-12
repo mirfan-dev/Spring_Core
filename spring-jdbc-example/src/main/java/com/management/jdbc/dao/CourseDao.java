@@ -94,5 +94,14 @@ public class CourseDao {
         return rowCount !=null ? rowCount :0;
     }
 
+    // search based on name and description
+
+    public List<Course> searchByNameAndDescription(String key){
+
+        String searchQuery="select * from course where name like ? or description like ?";
+        List<Course> courses=jdbcTemplate.query(searchQuery,new Object[]{"%" +key+ "%", "%" +key+ "%"},new CourseRowMapper());
+        return courses;
+    }
+
 
 }

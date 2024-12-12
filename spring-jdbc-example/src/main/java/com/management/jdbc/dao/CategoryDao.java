@@ -2,6 +2,7 @@ package com.management.jdbc.dao;
 
 import ch.qos.logback.core.testUtil.CoreTestConstants;
 import com.management.jdbc.entity.Category;
+import com.management.jdbc.entity.Course;
 import com.management.jdbc.utils.CategoryRowMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,17 @@ public class CategoryDao {
         String countQuery ="select count(*) from category";
         Integer rowCount=jdbcTemplate.queryForObject(countQuery,Integer.class);
         return rowCount != null ? rowCount :0;
+    }
+
+
+    // search category based on title and description
+
+    public List<Category> searchByTitleAndDescription(String key){
+
+        String searchQuery="select * from category where title like ? or description like ?";
+
+        List<Category> categories=jdbcTemplate.query(searchQuery,new Object[]{"%" +key+ "%", "%"  +key+ "%"},new CategoryRowMapper());
+        return categories;
     }
 
 
