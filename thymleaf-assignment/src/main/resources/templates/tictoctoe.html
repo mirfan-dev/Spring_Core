@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tic Tac Toe</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid black;
+        }
+        .btn {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Tic Tac Toe</h1>
+
+<h3 th:if="${message}" style="text-align: center;" th:text="${message}"></h3>
+
+<table>
+    <tr th:each="row, rowStat : ${#lists.list(board)}">
+        <td th:each="cell, cellStat : ${#lists.list(row)}">
+            <form th:action="@{/move}" method="post">
+                <input type="hidden" name="row" th:value="${rowStat.index}" />
+                <input type="hidden" name="col" th:value="${cellStat.index}" />
+                <button type="submit" class="btn"
+                        th:text="${cell}"
+                        th:disabled="${cell != ' ' ? 'disabled' : null}">
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<div style="text-align: center;">
+    <a href="/" style="font-size: 20px;">Restart Game</a>
+</div>
+</body>
+</html>
