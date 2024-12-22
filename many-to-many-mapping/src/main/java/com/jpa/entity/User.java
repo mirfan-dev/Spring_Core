@@ -13,6 +13,8 @@ public class User {
     @Id
     private String id;
 
+    private String name;
+
     private String email;
 
     private String phone;
@@ -21,8 +23,6 @@ public class User {
 
     private String passowrd;
 
-    @Enumerated(EnumType.STRING)
-    private Role role=Role.ADMIN;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="user_role",
@@ -71,13 +71,7 @@ public class User {
         this.phone = phone;
     }
 
-    public Role getRole() {
-        return role;
-    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public List<RoleEntity> getRoleEntities() {
         return roleEntities;
@@ -85,5 +79,13 @@ public class User {
 
     public void setRoleEntities(List<RoleEntity> roleEntities) {
         this.roleEntities = roleEntities;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

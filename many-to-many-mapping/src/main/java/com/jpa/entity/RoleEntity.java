@@ -15,7 +15,11 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+
+
+
+    @Enumerated(EnumType.STRING)
+    private Role role=Role.ADMIN;
 
     @ManyToMany(mappedBy = "roleEntities")
     private List<User> users=new ArrayList<>();
@@ -29,13 +33,15 @@ public class RoleEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Role getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(Role role) {
+        this.role = role;
     }
+
+
 
     public List<User> getUsers() {
         return users;
