@@ -26,7 +26,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType type=UserType.STUDENT;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Laptop> laptop=new ArrayList<>();
 
 
