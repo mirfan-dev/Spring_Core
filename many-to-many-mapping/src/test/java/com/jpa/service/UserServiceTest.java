@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-import java.util.List;
-import java.util.UUID;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -41,10 +39,18 @@ public class UserServiceTest {
         roleEntity.getUsers().add(user);
         roleEntity.getUsers().add(user1);
 
+        RoleEntity roleEntity1=new RoleEntity();
+        roleEntity1.setRole(Role.GUEST);
+        roleEntity1.getUsers().add(user);
+        roleEntity1.getUsers().add(user1);
+
 
 
         user.getRoleEntities().add(roleEntity);
         user1.getRoleEntities().add(roleEntity);
+
+        user.getRoleEntities().add(roleEntity1);
+        user1.getRoleEntities().add(roleEntity1);
 
         service.saveUser(user);
         service.saveUser(user1);
