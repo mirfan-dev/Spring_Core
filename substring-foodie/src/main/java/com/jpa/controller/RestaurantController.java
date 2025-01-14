@@ -3,6 +3,7 @@ package com.jpa.controller;
 
 import com.jpa.dto.RestaurantDto;
 import com.jpa.service.RestaurantService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class RestaurantController {
     private RestaurantService service;
 
     @PostMapping
-    public ResponseEntity<RestaurantDto> saveUser(@Validated @RequestBody RestaurantDto restaurantDto){
+    public ResponseEntity<RestaurantDto> saveUser(@Valid @RequestBody RestaurantDto restaurantDto){
 
         RestaurantDto userDto1=service.saveUser(restaurantDto);
         return new ResponseEntity<>(userDto1, HttpStatus.CREATED);

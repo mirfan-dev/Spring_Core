@@ -4,6 +4,7 @@ package com.jpa.controller;
 import com.jpa.dto.UserDto;
 import com.jpa.entity.User;
 import com.jpa.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<UserDto> saveUser(@Validated @RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserDto userDto){
 
         UserDto userDto1=service.saveUser(userDto);
         return new ResponseEntity<>(userDto1, HttpStatus.CREATED);
