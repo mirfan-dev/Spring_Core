@@ -1,15 +1,20 @@
 package com.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -28,83 +33,53 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role; // ADMIN, CUSTOMER, DELIVERY_BOY
 
-    private boolean isAvailable = true; // applicable for delivery boy
+    private Boolean isAvailable=true;
+
+    private LocalDate createDate;
+
+
 
     // feel free to add more fields ad required
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<RoleEntity> roleEntities=new ArrayList<>();
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Restaurant> restaurants = new ArrayList<>();
 
-    public String getAddress() {
-        return address;
+
+
+    @PrePersist
+    public void preSave(){
+        this.createDate=LocalDate.now();
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+
+    @PostPersist
+    public void postSave(){
+        this.createDate=LocalDate.now();
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
+    public User(String id, String name, String email, String password, String address, String phoneNumber, Role role) {
         this.id = id;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+        this.email = email;
         this.password = password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
+        this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
         this.role = role;
+
     }
+
+
+
+
+
+
+
 }
