@@ -9,7 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
-    #jpa or hibernate configurations
+
+ #jpa or hibernate configurations
 
   jpa:
     show-sql: true
@@ -18,3 +19,23 @@ spring:
     properties:
       format-sql: true
       dialect: org.hibernate.dialect.MySQLDialect
+
+
+#upload file/image
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+
+
+
+
+
+ # custom-property
+restaurant-file-path: uploads/restaurant-banners/
+
+
+
+

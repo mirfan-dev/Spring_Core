@@ -1,6 +1,7 @@
 package com.jpa.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
@@ -38,6 +39,8 @@ public class Restaurant {
     private Boolean open;
 
     private LocalDateTime createdDateTime;
+
+    private String banner;
 
 
 

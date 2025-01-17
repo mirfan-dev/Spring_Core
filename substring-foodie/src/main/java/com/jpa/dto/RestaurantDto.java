@@ -18,6 +18,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class RestaurantDto {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String id;
 
     private String name;
@@ -36,6 +37,16 @@ public class RestaurantDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss a")
     private LocalDateTime createdDateTime;
+
+    private String banner;
+
+    @JsonProperty
+    public String imageUrl(){
+
+        return "http://localhost:8081/images/" + banner;
+    }
+
+
 
 
 }

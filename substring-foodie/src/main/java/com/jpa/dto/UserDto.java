@@ -1,6 +1,7 @@
 package com.jpa.dto;
 
 import com.jpa.entity.Role;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,11 @@ public class UserDto {
 
 
     private Role role;
+
+
+
+
+    
 
 
 

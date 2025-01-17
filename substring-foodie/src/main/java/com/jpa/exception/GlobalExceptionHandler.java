@@ -32,4 +32,14 @@ public class GlobalExceptionHandler {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse); // Cleaner response creation
         }
 
+    @ExceptionHandler(InvalidFilePathException.class)
+    public ResponseEntity<ErrorResponse> errorResponseHandler(InvalidFilePathException ex) {
+        ErrorResponse errorResponse=ErrorResponse.builder()
+                .message(ex.getMessage())
+                .status(HttpStatus.NOT_FOUND) // Use NOT_FOUND for ResourceNotFoundException
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse); // Cleaner response creation
+    }
+
 }

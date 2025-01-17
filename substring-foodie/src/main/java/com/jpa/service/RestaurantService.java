@@ -3,7 +3,9 @@ package com.jpa.service;
 import com.jpa.dto.RestaurantDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RestaurantService {
@@ -25,5 +27,7 @@ public interface RestaurantService {
     public Page<RestaurantDto> getUserWithPagination(Pageable pageable);
 
     public List<RestaurantDto> searchListOfUser(String keyword);
+
+    public RestaurantDto uploadBanner(MultipartFile file, String id) throws IOException;
 
 }

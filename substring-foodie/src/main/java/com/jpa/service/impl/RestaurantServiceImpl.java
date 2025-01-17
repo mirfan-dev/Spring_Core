@@ -1,20 +1,26 @@
 package com.jpa.service.impl;
 
 
+import com.jpa.dto.FileData;
 import com.jpa.dto.RestaurantDto;
 import com.jpa.entity.Restaurant;
 import com.jpa.exception.ResourceNotFoundException;
 import com.jpa.repository.RestaurantRepository;
+import com.jpa.service.FileService;
 import com.jpa.service.RestaurantService;
 import com.jpa.utils.Helper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,10 +28,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private RestaurantRepository repository;
 
     @Autowired
     private ModelMapper mapper;
+
+    @Value("${restaurant-file-path}")
+    private String bannerFolderPath;
 
 
     @Override
@@ -89,5 +101,23 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         return restaurants.stream().map((restaurant) -> mapper.map(restaurant,RestaurantDto.class))
                 .toList();
+    }
+
+    @Override
+    public RestaurantDto uploadBanner(MultipartFile file, String id) throws IOException {
+
+        String fileName=file.getOriginalFilename();
+
+        String fileExtension=fileName.substring(fileName.lastIndexOf("."));
+
+        String newFileName=new Date().getTime()+fileExtension;
+
+        FileData fileData=fileService.uploadFile(file, bannerFolderPath + newFileName);
+
+        Restaurant restaurant=repository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Restaurant not found with id "+id));
+        restaurant.setBanner(fileData.fileName());
+        repository.save(restaurant);
+        return mapper.map(restaurant,RestaurantDto.class);
     }
 }
