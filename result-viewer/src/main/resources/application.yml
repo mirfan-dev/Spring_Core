@@ -3,14 +3,14 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/jb2404
+    url: jdbc:mysql://localhost:3306/school
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
 
- #jpa or hibernate configurations
+  #jpa or hibernate configurations
 
   jpa:
     show-sql: true
@@ -21,25 +21,14 @@ spring:
       dialect: org.hibernate.dialect.MySQLDialect
 
 
-#upload file/image
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-
-
-
-
-
-
-
- # custom-property
-restaurant-file-path: uploads/restaurant-banners/
+  security:
+    user:
+      name: user
+      password: user
 
 logging:
   level:
-    org-springframework-security=DEBUG:
-
+    org.springframework.security: DEBUG
 
 
 

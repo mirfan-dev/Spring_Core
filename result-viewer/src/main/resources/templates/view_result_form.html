@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-2xl font-bold text-gray-800 text-center">Get Your Result</h1>
+    <p class="text-gray-600 text-center mt-2">Enter your details below to view your result</p>
+
+    <form novalidate class="mt-6" th:action="@{'/view-result-action'}" th:object="${requestResultForm}" method="post">
+        <!-- Roll Number Field -->
+        <div class="mb-4">
+            <label for="rollNumber" class="block text-sm font-medium text-gray-700">Roll Number</label>
+            <input
+                    th:field="*{rollNumber}"
+                    type="text"
+                    id="rollNumber"
+                    name="rollNumber"
+                    placeholder="Enter your roll number"
+                    class="mt-1 block p-3 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            />
+            <span class="text-red-700 p-2" th:if="${#fields.hasErrors('rollNumber')}" th:errors="*{rollNumber}"></span>
+        </div>
+
+        <!-- Date of Birth Field -->
+        <div class="mb-4">
+            <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+            <input
+                    th:field="*{dateOfBirth}"
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    class="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            />
+
+            <span class="text-red-700 p-2" th:if="${#fields.hasErrors('dateOfBirth')}"
+                  th:errors="*{dateOfBirth}"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+            <button
+                    type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+                View Result
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

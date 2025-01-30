@@ -1,13 +1,13 @@
 package com.jpa.dto;
 
-import com.jpa.entity.Role;
-import jakarta.persistence.Lob;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Setter
 @Getter
@@ -28,8 +28,10 @@ public class UserDto {
 
     private String phoneNumber;
 
+    private List<RoleEntityDto> roleEntityDtos;
 
-    private Role role;
+
+//    private Role role;
 
 
 
