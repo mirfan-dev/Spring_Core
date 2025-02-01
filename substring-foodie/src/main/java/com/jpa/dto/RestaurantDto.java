@@ -4,6 +4,7 @@ package com.jpa.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jpa.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class RestaurantDto {
     private LocalDateTime createdDateTime;
 
     private String banner;
+
 
     @JsonProperty
     public String imageUrl(){

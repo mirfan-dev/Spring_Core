@@ -4,8 +4,10 @@ package com.jpa.service.impl;
 import com.jpa.dto.FileData;
 import com.jpa.dto.RestaurantDto;
 import com.jpa.entity.Restaurant;
+import com.jpa.entity.User;
 import com.jpa.exception.ResourceNotFoundException;
 import com.jpa.repository.RestaurantRepository;
+
 import com.jpa.service.FileService;
 import com.jpa.service.RestaurantService;
 import com.jpa.utils.Helper;
@@ -40,11 +42,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     private String bannerFolderPath;
 
 
+
+
     @Override
     public RestaurantDto saveUser(RestaurantDto restaurantDto) {
         restaurantDto.setId(Helper.generateRandomUserId());
         restaurantDto.setCreatedDateTime(LocalDateTime.now());
+
         Restaurant restaurant= mapper.map(restaurantDto,Restaurant.class);
+
         Restaurant saveRestaurant= repository.save(restaurant);
         return mapper.map(saveRestaurant,RestaurantDto.class);
     }

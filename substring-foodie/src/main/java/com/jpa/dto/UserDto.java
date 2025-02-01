@@ -1,18 +1,17 @@
 package com.jpa.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDto {
 
 
@@ -28,7 +27,7 @@ public class UserDto {
 
     private String phoneNumber;
 
-    private List<RoleEntityDto> roleEntityDtos;
+    private List<RoleEntityDto> roleEntities=new ArrayList<>();
 
 
 //    private Role role;

@@ -2,7 +2,6 @@ package com.jpa.controller;
 
 
 import com.jpa.dto.UserDto;
-import com.jpa.entity.User;
 import com.jpa.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

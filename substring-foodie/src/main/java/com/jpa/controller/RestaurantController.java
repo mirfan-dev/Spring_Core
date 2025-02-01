@@ -1,9 +1,7 @@
 package com.jpa.controller;
 
 
-import com.jpa.dto.FileData;
 import com.jpa.dto.RestaurantDto;
-import com.jpa.service.FileService;
 import com.jpa.service.RestaurantService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -30,7 +28,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v2/restaurant")
+@RequestMapping("/api/v1/restaurant")
 public class RestaurantController {
 
     private Logger logger= LoggerFactory.getLogger(RestaurantController.class);

@@ -1,5 +1,6 @@
 package com.jpa.service.impl;
 
+import com.jpa.dto.RoleEntityDto;
 import com.jpa.dto.UserDto;
 import com.jpa.entity.RoleEntity;
 import com.jpa.entity.User;
@@ -42,8 +43,15 @@ public class UserServiceImpl implements UserService {
         userDto.setId(Helper.generateRandomUserId());
         User user= mapper.map(userDto,User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        RoleEntity role=roleEntityRepository.findByName(AppConstant.getGuestRole());
-        user.getRoleEntities().add(role);
+        // Ensure the role exists
+        RoleEntity roleGuest = roleEntityRepository.findByName(AppConstant.getRoleGuest());
+        if (roleGuest == null) {
+            roleGuest = new RoleEntity();
+            roleGuest.setName(AppConstant.getRoleGuest());
+            roleGuest = roleEntityRepository.save(roleGuest);
+        }
+
+        user.getRoleEntities().add(roleGuest);
          User saveUser= repository.save(user);
         return mapper.map(saveUser,UserDto.class);
 
